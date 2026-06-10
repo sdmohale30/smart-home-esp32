@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 38.4, "left": 187.24, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -9.3,
+      "left": -34.2,
+      "attrs": { "humidity": "64.5", "temperature": "3.5" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -25.66,
+      "left": 38.63,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 192.2, "left": -86.4, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay2", "top": 249.8, "left": -86.4, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 255.8,
+      "left": 336,
+      "attrs": { "color": "green", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v-192", "h192", "v153.6" ] ],
+    [ "dht1:GND", "esp:GND.3", "black", [ "v-9.6", "h278.4" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v-48", "h48" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-28.8", "h86.55", "v115.2" ] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v-19.2", "h182.47", "v67.2" ] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v-38.4", "h211.5", "v182.4" ] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h-28.8", "v96", "h-134.4" ] ],
+    [ "relay1:GND", "esp:GND.3", "black", [ "h-48", "v-144.4", "h422.4" ] ],
+    [ "relay2:GND", "esp:GND.3", "black", [ "h-48", "v-326.8", "h422.4" ] ],
+    [ "relay2:VCC", "relay1:VCC", "red", [ "h-28.8", "v48" ] ],
+    [ "relay1:IN", "esp:26", "green", [ "h-19.2", "v-77" ] ],
+    [ "relay2:IN", "esp:27", "limegreen", [ "h-38.4", "v-0.2" ] ],
+    [ "esp:0", "btn1:1.l", "green", [ "h0" ] ],
+    [ "esp:GND.3", "btn1:2.l", "black", [ "h28.8", "v163.2" ] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v38.4", "h307.3", "v38.4" ] ]
+  ],
+  "dependencies": {}
+}
